@@ -1,0 +1,19 @@
+﻿@model TestViewModel
+
+@{
+    ViewData["Title"] = "Translate the Word";
+}
+
+<h2>Translate the Word</h2>
+
+<form asp-action="CheckTranslation" method="post">
+    <div>
+        <label>Translate the following word:<h1>@Model.EnglishWord</h1></label>
+        <input type="hidden" name="EnglishWord" value="@Model.EnglishWord"/>
+        <input type="hidden" name="RussianTranslation" value="@Model.RussianWord"/>
+    </div>
+    <div>
+        <input type="text" name="userTranslation"/>
+    </div>
+    <button type="submit" class="btn btn-primary">Check translate</button>
+</form>

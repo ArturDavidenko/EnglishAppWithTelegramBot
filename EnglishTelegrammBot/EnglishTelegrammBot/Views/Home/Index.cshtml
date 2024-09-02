@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to English App with Telegramm bot activity</h1>
+</div>
+
+<h1>File Upload</h1>
+
+<form asp-action="Index" asp-controller="Home" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="UploadedFile">Choose file to load!</label>
+        <input type="file" class="form-control" id="UploadedFile" name="UploadedFile"/>
+    </div>
+    <button type="submit" class="btn btn-primary">Load or add file</button>
+</form>
+
+@if (Model?.Dictionary != null)
+{
+    <h2>Words And Translates</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Word</th>
+                <th>Translate</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Dictionary)
+            {
+                <tr>
+                    <td>@item.Key</td>
+                    <td>@item.Value</td>
+                </tr>
+            }
+        </tbody>
+        
+    </table>
+    <a asp-action="EnglishTestPage" asp-controller="Home" class="btn btn-warning">Start test</a>
+    <a asp-action="testViewBot" asp-controller="TelegramBot" class="btn btn-warning">Create telegram bot action with this list</a>
+    <a asp-action="DeleteList" asp-controller="Home" class="btn btn-danger">Delete List</a>
+}

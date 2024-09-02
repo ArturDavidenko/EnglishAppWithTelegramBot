@@ -1,0 +1,23 @@
+﻿@model CheckViewModel
+
+@{
+    ViewData["Title"] = "Translation Result";
+}
+
+<h2>Translation Result</h2>
+
+<p>Word: @Model.EnglishWord</p>
+<p>Your Translation: @Model.UserTranslation</p>
+<p>Correct Translation: @Model.CorrectTranslation</p>
+
+@if (Model.IsCorrect)
+{
+    <p style="color: green;">Correct!</p>
+}
+else
+{
+    <p style="color: red;">Incorrect!</p>
+}
+
+<a asp-action="EnglishTestPage" asp-controller="Home" class="btn btn-primary">Try Another Word</a>
+
