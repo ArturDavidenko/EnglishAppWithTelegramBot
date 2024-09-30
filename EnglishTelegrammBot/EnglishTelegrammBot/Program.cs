@@ -6,7 +6,7 @@ namespace EnglishTelegrammBot
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +26,12 @@ namespace EnglishTelegrammBot
                 app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
+            }
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var telegramRepository = scope.ServiceProvider.GetRequiredService<TelegramRepository>();
+                await telegramRepository.InitTelegramBot();
             }
 
             app.UseHttpsRedirection();
