@@ -35,10 +35,12 @@ namespace EnglishTelegramBotAPI.Repository
         public async Task DeleteWordsList()
         {
             var list = await _context.words.ToListAsync();
+            //remove range use
             foreach (var word in list)
             {
                 _context.Remove(word);
             }
+            
             await _context.SaveChangesAsync();
         }
 
